@@ -1,0 +1,16 @@
+#set terminal qt enhanced 40
+set terminal postscript enhanced color solid "Helvetica" 25
+set out "ML41_t_profile.ps"
+
+set title "Laminar Profile of t Statistics" 
+set ylabel "t value" 
+set xlabel "cortical depth (left is WM, right is CSF)"
+set key top left
+
+plot "ML41_layer_MT_OFF_t.dat" u 0:($1) w lines title "BOLD"  linewidth 3 linecolor rgb "red"  ,\
+     "ML41_layer_MT_OFF_t.dat" u 0:($1):($2)/sqrt($3-1) w yerrorbars title "" pt 1  linewidth 2 linecolor rgb "red"  ,\
+     "ML41_layer_MT_ON_t.dat" u 0:($1) w lines title "MT"  linewidth 3 linecolor rgb "blue"  ,\
+     "ML41_layer_MT_ON_t.dat" u 0:($1):($2)/sqrt($3-1) w yerrorbars title "" pt 1  linewidth 2 linecolor rgb "blue"  ,\
+
+exit
+
